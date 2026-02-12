@@ -1,0 +1,19 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Audit Findings",
+  "type": "object",
+  "properties": {
+    "id": { "type": "string" },
+    "title": { "type": "string" },
+    "severity": { "enum": ["info", "low", "medium", "high", "critical"] },
+    "affected": { "type": "string" },
+    "summary": { "type": "string" },
+    "evidence": { "type": "string" },
+    "remediation": { "type": "string" },
+    "owasp": { "type": "string", "description": "OWASP Top 10 category e.g., A03:2021-Injection" },
+    "stride": { "type": "string", "description": "Threat category e.g., Information Disclosure" },
+    "cvss": { "type": "number", "minimum": 0, "maximum": 10 },
+    "risk": { "enum": ["low", "medium", "high"] }
+  },
+  "required": ["id", "title", "severity", "summary", "remediation"]
+}
