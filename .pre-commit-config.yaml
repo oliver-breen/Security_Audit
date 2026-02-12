@@ -22,7 +22,7 @@ repos:
     rev: 1.7.8
     hooks:
       - id: bandit
-        args: [ "-r", "." ]
+        args: [ "-r", ".", "--exclude", "./venv,./vulnerable_app/venv,./.venv" ]
 
   - repo: https://github.com/Yelp/detect-secrets
     rev: v1.5.0
