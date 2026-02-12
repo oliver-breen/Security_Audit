@@ -1,0 +1,23 @@
+name: SBOM Generation
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "0 1 * * 0"  # weekly
+
+jobs:
+  sbom:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install Syft
+        run: |
+          curl -sSfL https://raw.githubusercontent.com/anchore/syft/main/install.sh | sh -s -- -b /usr/local/bin
+      - name: Generate SBOM (repo contents)
+        run: syft dir:. -o cyclonedx-json > sbom.cdx.json
+      - name: Upload SBOM
+        uses: actions/upload-artifact@v4
+        with:
+          name: sbom-cyclonedx
+          path: sbom.cdx.json

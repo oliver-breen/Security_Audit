@@ -1,0 +1,27 @@
+# Semgrep rules for Python & Shell
+rules:
+  - id: py-eval-exec
+    languages: [python]
+    pattern-either:
+      - pattern: eval($X)
+      - pattern: exec($X)
+    message: Avoid eval/exec — unsafe and hard to audit
+    severity: WARNING
+
+  - id: py-subprocess-shell-true
+    languages: [python]
+    pattern: subprocess.$F(..., shell=True, ...)
+    message: shell=True can lead to injection; pass args as a list
+    severity: WARNING
+
+  - id: sh-dangerous-wildcards
+    languages: [bash]
+    pattern: rm -rf $X
+    message: Use cautious patterns; avoid rm -rf with unvalidated vars
+    severity: WARNING
+
+  - id: sh-curl-insecure
+    languages: [bash]
+    pattern: curl -k
+    message: Avoid --insecure unless strictly necessary and documented
+    severity: INFO
