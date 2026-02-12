@@ -179,3 +179,71 @@ cython_debug/
 #  refer to https://docs.cursor.com/context/ignore-files
 .cursorignore
 .cursorindexingignore
+
+# Security: Sensitive files and credentials
+# Private keys and certificates
+*.key
+*.pem
+*.p12
+*.pfx
+*.crt
+*.der
+*.cer
+*.cert
+*.jks
+*.keystore
+*.pkcs12
+*_rsa
+*_dsa
+*_ecdsa
+*_ed25519
+id_rsa*
+id_dsa*
+id_ecdsa*
+id_ed25519*
+*.ppk
+
+# Secret files
+secret*
+Secret*
+SECRET*
+credentials*
+Credentials*
+CREDENTIALS*
+
+# Password managers and vaults
+*.kdb
+*.kdbx
+*.agilekeychain
+*.keychain
+wallet.dat
+
+# VPN configs
+*.ovpn
+*.tblk
+
+# Auth files
+authinfo*
+.netrc
+.pgpass
+*.password
+*.token
+*.apikey
+
+# Cloud provider credentials
+aws*.json
+gcloud*.json
+azure*.json
+service-account*.json
+credentials.json
+client_secret*.json
+.aws/
+.azure/
+.gcloud/
+
+# Scan outputs (may contain sensitive findings)
+recon/
+scans/
+findings/
+*.scan
+audit-output/
