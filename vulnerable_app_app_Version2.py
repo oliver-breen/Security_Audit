@@ -42,10 +42,10 @@ def search():
     if request.method == 'POST':
         q = request.form.get('q', '')
         db = get_db()
-        # INTENTIONALLY VULNERABLE: direct string interpolation
-        sql = "SELECT id, name, email FROM users WHERE name = '%s'" % q
+        # Fixed: Using parameterized query to prevent SQL injection
+        sql = "SELECT id, name, email FROM users WHERE name = ?"
         try:
-            cur = db.execute(sql)
+            cur = db.execute(sql, (q,))
             results = cur.fetchall()
         except Exception as e:
             results = [('error', str(e))]
@@ -83,4 +83,5 @@ def headers():
     return "Server headers demo", 200, {'Server': 'DemoServer/1.2.3', 'X-Powered-By': 'Flask'}
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    debug_mode = os.environ.get('FLASK_DEBUG', '').lower() in ('true', '1', 'yes')
+    app.run(debug=debug_mode)

@@ -247,3 +247,5 @@ scans/
 findings/
 *.scan
 audit-output/
+# Local test database
+data.db
