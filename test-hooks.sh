@@ -109,4 +109,3 @@ echo "- .gitignore is blocking common sensitive file patterns"
 echo "- Hook is catching additional patterns not in .gitignore"
 echo ""
 echo "The security audit workflow is protecting against sensitive file commits! ✅"
-
