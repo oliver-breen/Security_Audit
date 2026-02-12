@@ -83,6 +83,5 @@ def headers():
     return "Server headers demo", 200, {'Server': 'DemoServer/1.2.3', 'X-Powered-By': 'Flask'}
 
 if __name__ == '__main__':
-    import os
     debug_mode = os.environ.get('FLASK_DEBUG', 'False').lower() == 'true'
     app.run(debug=debug_mode)
